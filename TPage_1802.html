@@ -1,0 +1,178 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TPage_1802</title>
+
+<style>
+/* Body */
+body{@charset "utf-8";   background-color:#99BFA4;  font-size:normal;  color:black;}
+
+/* Container Classes */
+.c0{ background-color:white; color:black;  margin:5px; padding:5px; border:1px solid black; font-size:200%;}   /* most basic container */ 
+.cExample{ background-color:yellow; color:blue;  margin:5px; padding:5px; border:5px solid red; box-shadow: 3px 2px maroon; text-shadow: 3px 2px green; font-size:70%;}   /* class cExample */ 
+
+/* Fonts */
+.fs{font-size:small;}                                              /* small font size */
+.fR{color:red;}  .fRB{color:red; font-weight:bold;}        /* font color red, 100% and bold */
+.fB{color:MidnightBlue;}  .fBB{colorMidnightBlue; font-weight:bold;}        /* font color blue (greyish), 100% and bold, 100% blus is used for links */
+.fM{color:Maroon;}  .fMB{color:Maroon; font-weight:bold;}        /* font color maroon, 100% and bold */
+.fG{color:MediumSeaGreen;}  .fGB{color:#MediumSeaGreen; font-weight:bold;}        /* font color green (dark), 100% and bold  */
+
+/* Tables */
+table.nb {  border-collapse: collapse;   margin:5px;  }                                         /* table with 100% fonts and border  */
+table.st{font-size:small;}   table.stb{font-size:small;border-collapse: collapse; margin:5px;}  /* table with small fonts +/- border  */
+table.stb td,table.stb th,table.nb td,table.nb th { border: 2px solid black; padding: 2px; }    /* table elements with small fonts + border  */
+
+/*   This Page */
+
+.cButton{color:#f0f0f0;  background-color:#611800; font-size:100%;  box-shadow: 3px 2px aqua;} 
+.cContent{background-color:#E0E0E0; color:#000000;  padding:5px; border:1px solid black; font-size:100%;} 
+.cLabel{color:#f0f0f0;  background-color:#611800; font-size:100%;} 
+
+</style>
+
+<script>
+<!--
+//            Javascript program controlling collapsible panels
+
+cStart = "a";
+cFinish = "z";
+nStart = "0";
+nFinish = 100;  // reserve 90-100 for special use
+function expandDiv(curobj,which){trig=document.getElementById(which).style.display;if(trig=="block"){trig="none";}else if(trig=="" || trig=="none"){trig="block";}  document.getElementById(which).style.display=trig;}
+function DivExists(id){if(!!document.getElementById(id)) return 1;  return 0;}
+function ChangeShowEach(id, displayType){if(DivExists(id)==1) document.getElementById(id).style.display = displayType;}
+function ChangeShowAll(displayType){for(i=cStart.charCodeAt(0); i<= cFinish.charCodeAt(0);i++){c = String.fromCharCode(i);for(j=nStart; j<=nFinish;j++){id = `${c}${j}`;ChangeShowEach(id, displayType)}}}
+function DoShow(){ChangeShowAll("block");}
+function DoHide(){ChangeShowAll("none");}
+function ChangeShow(onAr){DoHide(); for(i=0;i<onAr.length;i++) ChangeShowEach(onAr[i], "block");}
+
+-->
+</script>
+
+
+</head>
+<body>
+<h2 align="center">TPage_1802.html: Template for Page</h2>
+<div align="center"><table><tr><td align="left" class="cContent">
+<!--<img src="http://SupaDupa999.github.io/SupaDupa999Logo.png" style="width:20%; float:right;">-->
+<!--<img src="http://SupaDupa1802.github.io/Resources/SupaDupa1802Logo.png" style="width:20%; float:right;">-->
+<img src="http://SupaDupa1802.github.io/SupaDupa1802Logo.png" style="width:20%; float:right;">
+
+<p><span class="cButton" onclick="DoShow()">Show All</span>
+<span class="cButton" onclick="DoHide()">Hide All</span></p>
+
+  <span  class="cLabel" title="click me" onclick="expandDiv(this,'a1')">a1</span>
+  <div   class="cContent" id="a1" style="display:block">
+  This is a1
+  </div><br />
+
+  <span  class="cLabel" title="click me" onclick="expandDiv(this,'a2')">a2</span>
+  <div   class="cContent" id="a2" style="display:block">
+  This is a2
+  </div><br />
+
+
+
+
+
+<h2 align="center">Put Contents Here</h2>
+
+
+
+
+<hr />
+
+<!--<div style="background-color:yellow; border:1px solid black;   display:block">  -->
+    <div style="background-color:yellow; background-image:url('http://SupaDupa1802.github.io/SupaDupa1802WM.png'); border:1px solid black;   display:block">
+                                                                
+
+This is the simplest of templates, suitable for a short simple web page
+<p>What follows are the common elements (tags) that can be used to build weg pages
+<p>Each tag is presented with and without style
+<br />The style includes everything, most of which are not necessar
+<br />The idea is to copy and paste it into the body, then to edit and delete bits of the style
+<hr />
+<h1 align="center">This is h1 header</h1>
+<h2 align="center">This is h2 header</h2>
+<h3 align="center">This is h3 header</h1>
+<h4 align="center">This is h4 header</h1>
+
+<hr />
+    <span>
+    This is a span with no style
+    </span> 
+
+    <span style="background-color:Black;    color:White;  font-size:120%; font-weight:bold;    padding:5px; border:1px solid Yellow;">
+    This is a span with style
+    </span>
+<hr />
+    <div>
+    This is a div with no style<br />can you see
+    </div>
+
+    <div style="background-color:OldLace; color:Purple;  font-size:110%; font-weight:bold; padding:5px; border:1px solid black;">  
+    This is a div with style<br />can you see
+    </div>
+<hr />
+    <p>These are paragraphs and line breaks</p>
+
+    <p>
+    Pargraph 1 line 1
+    <br />
+    Pargraph 1 line 2
+    </p>
+
+    <p>
+    Pargraph 2 line 1
+    <br />
+    Pargraph 2 line 2
+    </p>
+<hr />
+    This line is not indented
+    <ul>
+    This line is indented
+    </ul>
+    This line is un-indented
+<hr />
+    This is a dot point list
+    <ul>
+    <li>Item 1    
+    <li>Item 2    
+    <li>Item 3 
+    </ul>
+    List finished
+<hr />
+    This is a numbered list
+    <ol>
+    <li>Item 1    
+    <li>Item 2    
+    <li>Item 3 
+    </ol>
+    List finished
+<hr />
+ThumbUp imagess from Grandpa's SupaDupa1802<br />
+    <img src="http://SupaDupa1802.github.io/Take/ThumbUp.png" width="5%">   
+    <img src="http://SupaDupa1802.github.io/Take/ThumbUp.png" width="10%"> 
+<hr />  
+    This is a table
+    <table>
+    <tr> <td>Row 1 Col 1</td> <td>Row 1 Col 2</td> <td>Row 1 Col 3</td> <td>Row 1 Col 4</td> </tr>
+    <tr> <td>Row 2 Col 1</td> <td>Row 2 Col 2</td> <td>Row 2 Col 3</td> <td>Row 2 Col 4</td> </tr>
+    <tr> <td>Row 3 Col 1</td> <td>Row 3 Col 2</td> <td>Row 3 Col 3</td> <td>Row 3 Col 4</td> </tr>
+    </table>
+
+  <!-- <span  class="cButton" onclick="Show_a1()">Show a1</span>   button showing defined panels Moved to menu bar-->
+  <span  class="cLabel" title="click me" onclick="expandDiv(this,'a1')">a1</span>
+  <div   class="cContent" id="a1" style="display:none">
+  This is a1
+  </div><br />
+
+</div>
+
+
+</td></tr></table></div>
+
+</body>
+</html>
