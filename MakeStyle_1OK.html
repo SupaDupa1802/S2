@@ -1,0 +1,199 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MakeStyle</title>
+
+<style>
+/* Body */
+body{@charset "utf-8";   background-color:#99BFA4;  font-size:normal;  color:black;}
+
+/* Fonts */
+.fs{font-size:small;}                                              /* small font size */
+.fR{color:red;}  .fRB{color:red; font-weight:bold;}        /* font color red, 100% and bold */
+.fB{color:MidnightBlue;}  .fBB{colorMidnightBlue; font-weight:bold;}        /* font color blue (greyish), 100% and bold, 100% blus is used for links */
+.fM{color:Maroon;}  .fMB{color:Maroon; font-weight:bold;}        /* font color maroon, 100% and bold */
+.fG{color:MediumSeaGreen;}  .fGB{color:#MediumSeaGreen; font-weight:bold;}        /* font color green (dark), 100% and bold  */
+
+/* Tables */
+table.nb {  border-collapse: collapse;   margin:5px;  }                                         /* table with 100% fonts and border  */
+table.st{font-size:small;}   table.stb{font-size:small;border-collapse: collapse; margin:5px;}  /* table with small fonts +/- border  */
+table.stb td,table.stb th,table.nb td,table.nb th { border: 2px solid black; padding: 2px; }    /* table elements with small fonts + border  */
+
+/*   This Page */
+
+.cButton{color:#f0f0f0;  background-color:#611800; font-size:100%;  box-shadow: 3px 2px aqua;} 
+.cContent{background-color:#E0E0E0; color:#000000;  padding:5px; border:1px solid black; font-size:100%;} 
+.cLabel{color:#f0f0f0;  background-color:#611800; font-size:100%;} 
+
+</style>
+
+<script>
+<!--
+function ChangeStyle(idStr,styleStr)
+{ 
+   document.getElementById(idStr).setAttribute("style",styleStr);
+   navigator.clipboard.writeText(styleStr);
+   alert("Style=\n" + styleStr + "\nCopied to Clipboard");
+}
+
+function DoChangeRow0(){ ChangeStyle("r0c0", document.getElementById("r0c1").value); }
+function DoChangeRow1(){ ChangeStyle("r1c0", document.getElementById("r1c1").value); }
+function DoChangeRow2(){ ChangeStyle("r2c0", document.getElementById("r2c1").value); }
+function DoChangeRow3(){ ChangeStyle("r3c0", document.getElementById("r3c1").value); }
+function DoChangeRow4(){ ChangeStyle("r4c0", document.getElementById("r4c1").value); }
+
+function Empty(idName){document.getElementById(idName).value = ""; }
+
+
+//function MoveTo(idRow)
+function MoveTo(row)
+{
+   vStr = "";
+   v = document.getElementById("bgCol").value.trim();
+   if(v.length>0) vStr += "background-color:" + v + ";";
+   v = document.getElementById("bgImg").value.trim();
+   if(v.length>0) vStr += "background-image:url(" + v + ");";
+   v = document.getElementById("col").value.trim();
+   if(v.length>0) vStr += "color:" + v + ";";
+   v = document.getElementById("fSiz").value.trim();
+   if(v.length>0) vStr += "font-size:" + v + ";";
+   v = document.getElementById("fWt").value.trim();
+   if(v.length>0) vStr += "font-weight:" + v + ";";
+   v = document.getElementById("lHt").value.trim();
+   if(v.length>0) vStr += "line-height:" + v + ";";
+   v = document.getElementById("tSh").value.trim();
+   if(v.length>0) vStr += "text-shadow:" + v + ";";
+   v = document.getElementById("bdr").value.trim();
+   if(v.length>0) vStr += "border:" + v + ";";
+   v = document.getElementById("mgn").value.trim();
+   if(v.length>0) vStr += "margin:" + v + ";";
+   v = document.getElementById("pdn").value.trim();
+   if(v.length>0) vStr += "padding:" + v + ";";
+   v = document.getElementById("bSh").value.trim();
+   if(v.length>0) vStr += "box-shadow:" + v + ";";
+   idRow = `r${row}c1`;
+   document.getElementById(idRow).value = vStr;
+   switch(row)
+   {
+      case 0: DoChangeRow0(); return;
+      case 1: DoChangeRow1(); return;
+      case 2: DoChangeRow2(); return;
+      case 3: DoChangeRow3(); return;
+      case 4: DoChangeRow4(); return;
+   }
+}
+-->
+</script>
+
+
+</head>
+<body>
+<h2 align="center">MakeStyle.html: Creating Html Styles</h2>
+<div align="center"><table><tr><td align="left" class="cContent">
+<img src="http://SupaDupa1802.github.io/SupaDupa1802Logo.png" style="width:20%; float:right;">
+
+<!--<div  class="cContent" id="a2" style="display:block">-->
+<p>
+This page provides a program to create and test the attributes of container tags,
+<br />the common ones being
+<ul>
+<li><b>Headers: </b>&lt;hn> &lt;/hn> pairs where n=1, 2, 3, 4, 5
+<li><b>Indents and lists: </b> &lt;p> &lt;/p>, &lt;ul> &lt;/ul>, &lt;li> &lt;/li>
+<li><b>Containers: </b> &lt;body> &lt;/body>, &lt;div> &lt;/div>, &lt;span> &lt;/span>
+<li><b>Tables: </b> &lt;table> &lt;/table>, &lt;tr> &lt;/tr>, &lt;th> &lt;/th>, &lt;td> &lt;/td>
+</ul>
+</p><div>
+<table class="nb">
+<caption>Table 1: Creating Style</caption>
+<tr><th>Attribute</th><th>Value(s)</th><th>Cancel</th><th>Comments</th></tr>
+<tr><td colspan="4"><b>Background</b></td></tr>
+<tr><td>background-color</td><td><input type="text" id="bgCol" style="width:150px;" value="aqua"></td><td><input type="button" value="Empty Value"  onclick="Empty('bgCol')"></td>
+        <td>Color name, rgb(i,i,i), or #hex code</td></tr> <!-- background-color:aColor; -->
+<tr><td>background-image</td><td><input type="text" id="bgImg" style="width:150px;" value="aImg.png"></td><td><input type="button" value="Empty Value"  onclick="Empty('bgImg')"></td>
+        <td>url</td></tr> <!-- background-image:url(aUrl); -->
+<tr><td colspan="4"><b>Text Parameters</b></td></tr>
+<tr><td>color (font color)</td><td><input type="text" id="col" style="width:150px;" value="green"></td><td><input type="button" value="Empty Value"  onclick="Empty('col')"></td>
+        <td>color</td></tr> <!-- color:aColor; -->
+<tr><td>font-size</td><td><input type="text" id="fSiz" style="width:150px;" value="100%"></td><td><input type="button" value="Empty Value"  onclick="Empty('fSiz')"></td>
+        <td>in %, px, or html names</td></tr> <!-- color:aColor; -->
+<tr><td>font-weight</td><td><input type="text" id="fWt" style="width:150px;" value="bold"></td><td><input type="button" value="Empty Value"  onclick="Empty('fWt')"></td>
+        <td>bold</td></tr> <!-- font-weight:bold; -->
+<tr><td>text-shadow</td><td><input type="text" id="tSh" style="width:150px;" value="2px 3px lightgray"></td><td><input type="button" value="Empty Value"  onclick="Empty('tSh')"></td>
+        <td>hPx, vPx, color name</td></tr> <!-- text-shadow: hpx vpx aColor; -->
+<tr><td>line-height</td><td><input type="text" id="lHt" style="width:150px;" value="1.6"></td><td><input type="button" value="Empty Value"  onclick="Empty('lHt')"></td>
+        <td>line ht = times font ht, default = 1.6</td></tr> <!-- line-height:n; -->
+<tr><td colspan="4"><b>Container Parameters</b></td></tr>
+<tr><td>border</td><td><input type="text" id="bdr" style="width:150px;" value="1px solid black"></td><td><input type="button" value="Empty Value"  onclick="Empty('bdr')"></td>
+        <td>npx lineType lineColor</td></tr> <!-- border:npx solid col; -->
+<tr><td>margin</td><td><input type="text" id="mgn" style="width:150px;" value="5px"></td><td><input type="button" value="Empty Value"  onclick="Empty('mgn')"></td>
+        <td>npx space between neighbours</td></tr> <!-- margin:npx; -->
+<tr><td>padding</td><td><input type="text" id="pdn" style="width:150px;" value="5px"></td><td><input type="button" value="Empty Value"  onclick="Empty('pdn')"></td>
+        <td>npx space between border and contents</td></tr> <!-- padding:npx; -->
+<tr><td>box-shadow</td><td><input type="text" id="bSh" style="width:150px;" value="5px 5px red"></td><td><input type="button" value="Empty Value"  onclick="Empty('bSh')"></td>
+        <td>hpx vpx color</td></tr> <!-- box-shadow:hpx vpx colo; -->
+<tr><td colspan="4">
+        <input type="button" value="Copy to Row0" onclick="MoveTo(0)">
+        <input type="button" value="Copy to Row1" onclick="MoveTo(1)">
+        <input type="button" value="Copy to Row2" onclick="MoveTo(2)">
+        <input type="button" value="Copy to Row3" onclick="MoveTo(3)">
+        <input type="button" value="Copy to Row4" onclick="MoveTo(4)">
+    </td></tr> 
+</table>
+
+<b>To Create and Test a Style</b>
+<ol class="fM">
+<li>Go to Table 1
+<li>Empty all parmeters not required
+<li>Provide values for all parameters required
+<li>At the bottom of table 1, click <b>Copy</b> button to one of the rows
+<li>Check the results in Table 2
+<li>Correct style in text box in Table 2 and re-test result using <b>Action</b> button
+<li>The style is automatically copied to clipboard
+<li>Paste style in clipboard to html files
+</ol>
+
+<table class="nb">
+<caption>Table 1: Testing Style</caption>
+<tr><th>Result</th><th>Style</th><th>Action</th></tr>
+
+<!--<tr><td><span id="r0c0">This is<br />Row 0</span></td><td><textarea rows="3"  cols="50" id="r0c1">color:red;font-weight:bold;font-size:150%;</textarea></td>-->
+<tr><td><textarea rows="3"  cols="10" id="r0c0">Row 0
+Line 1
+line 2</textarea></td><td><textarea rows="3"  cols="50" id="r0c1">color:red;font-weight:bold;font-size:150%;</textarea></td>
+    <td><span class="cButton" onclick="DoChangeRow0()">Change Row 0 and<br />copy to Clipboard</span></td></tr>
+
+<!--<tr><td><span id="r1c0">This is<br />Row 1</span></td><td><textarea rows="3"  cols="50" id="r1c1" >color:yellow;text-shadow: 3px 2px green;</textarea></td>-->
+<tr><td><textarea rows="3"  cols="10" id="r1c0">Row 1
+Line 1
+line 2</textarea></td><td><textarea rows="3"  cols="50" id="r1c1">color:yellow;text-shadow: 3px 2px green;</textarea></td>
+    <td><span class="cButton" onclick="DoChangeRow1()">Change Row 1 and<br />copy to Clipboard</span></td></tr>
+
+<!--<tr><td><span id="r2c0">This is<br />Row 2</span></td><td><textarea rows="3"  cols="50" id="r2c1" >color:green;font-weight:bold;</textarea></td>-->
+<tr><td><textarea rows="3"  cols="10" id="r2c0">Row 2
+Line 1
+line 2</textarea></td><td><textarea rows="3"  cols="50" id="r2c1" >color:green;font-weight:bold;</textarea></td>
+    <td><span class="cButton" onclick="DoChangeRow2()">Change Row 2 and<br />copy to Clipboard</span></td></tr>
+
+<!--<tr><td><span id="r3c0">This is<br />Row 3</span></td><td><textarea rows="3"  cols="50" id="r3c1" >background-color:aqua;color:blue;box-shadow: 2px 2px maroon</textarea></td>-->
+<tr><td><textarea rows="3"  cols="10" id="r3c0">Row 3
+Line 1
+line 2</textarea></td><td><textarea rows="3"  cols="50" id="r3c1" >background-color:aqua;color:blue;box-shadow: 2px 2px maroon</textarea></td>
+    <td><span class="cButton" onclick="DoChangeRow3()">Change Row 3 and<br />copy to Clipboard</span></td></tr>
+
+<!--<tr><td><span id="r4c0">This is<br />Row 4</span></td><td><textarea rows="3"  cols="50" id="r4c1" >color:red;font-weight:bold;font-size:150%;</textarea></td>
+<tr><td><span id="r4c0">This is<br />Row 4</span></td><td><textarea rows="3"  cols="50" id="r4c1" >color:red;font-weight:bold;font-size:150%;</textarea></td>-->
+<tr><td><textarea rows="3"  cols="10" id="r4c0">Row 4
+Line 1
+line 2</textarea></td><td><textarea rows="3"  cols="50" id="r4c1" >color:red;font-weight:bold;font-size:150%;</textarea></td>
+    <td><span class="cButton" onclick="DoChangeRow4()">Change Row 4 and<br />copy to Clipboard</span></td></tr>
+</table>
+<h3 align="center">References</h3>
+<a href="https://www.w3schools.com/html/html_css.asp">https://www.w3schools.com/html/html_css.asp</a> Tutorial on Cascading Style
+
+</div>
+
+</td></tr></table></div>
+
+</body>
+</html>
