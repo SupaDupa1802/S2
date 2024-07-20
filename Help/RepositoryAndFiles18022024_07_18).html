@@ -1,0 +1,312 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rep&amp;Files_1802</title>
+
+<style>
+/* Body */
+
+
+body{@charset "utf-8";   background-color:#99BFA4;  font-size:110%;  color:black;}
+
+/* Container Classes */
+.c0{ background-color:white; color:black;  margin:5px; padding:5px; border:1px solid black; font-size:200%;}   /* most basic container */ 
+.cExample{ background-color:yellow; color:blue;  margin:5px; padding:5px; border:5px solid red; box-shadow: 3px 2px maroon; text-shadow: 3px 2px green; font-size:70%;}   /* class cExample */ 
+
+/* Fonts */
+.fs{font-size:small;}                                              /* small font size */
+.fR{color:red;}  .fRB{color:red; font-weight:bold;}        /* font color red, 100% and bold */
+.fB{color:MidnightBlue;}  .fBB{colorMidnightBlue; font-weight:bold;}        /* font color blue (greyish), 100% and bold, 100% blus is used for links */
+.fM{color:Maroon;}  .fMB{color:Maroon; font-weight:bold;}        /* font color maroon, 100% and bold */
+.fG{color:MediumSeaGreen;}  .fGB{color:#MediumSeaGreen; font-weight:bold;}        /* font color green (dark), 100% and bold  */
+
+/* Tables */
+table.nb {  border-collapse: collapse;   margin:5px;  }                                         /* table with 100% fonts and border  */
+table.st{font-size:small;}   table.stb{font-size:small;border-collapse: collapse; margin:5px;}  /* table with small fonts +/- border  */
+table.stb td,table.stb th,table.nb td,table.nb th { border: 2px solid black; padding: 2px; }    /* table elements with small fonts + border  */
+
+/*   This Page */
+.cContent{background-color:#E0E0E0; color:#000000; border:1px solid black; margin-left:20px; padding:5px; font-size:20px;}
+.cLabel{color:#E0E0E0; background-color:#611800;  font-size:20px;}
+.cButton{color:#f0f0f0;  background-color:#611800; font-size:90%; box-shadow: 1px 1px red;}  /* replacing buttons  */
+
+
+
+</style>
+
+<script>
+<!--
+//            Javascript program controlling collapsible panels
+
+cStart = "a";
+cFinish = "z";
+nStart = "0";
+nFinish = 100;  // reserve 90-100 for special use
+function expandDiv(curobj,which){trig=document.getElementById(which).style.display;if(trig=="block"){trig="none";}else if(trig=="" || trig=="none"){trig="block";}  document.getElementById(which).style.display=trig;}
+function DivExists(id){if(!!document.getElementById(id)) return 1;  return 0;}
+function ChangeShowEach(id, displayType){if(DivExists(id)==1) document.getElementById(id).style.display = displayType;}
+function ChangeShowAll(displayType){for(i=cStart.charCodeAt(0); i<= cFinish.charCodeAt(0);i++){c = String.fromCharCode(i);for(j=nStart; j<=nFinish;j++){id = `${c}${j}`;ChangeShowEach(id, displayType)}}}
+function DoShow(){ChangeShowAll("block");}
+function DoHide(){ChangeShowAll("none");}
+function ChangeShow(onAr){DoHide(); for(i=0;i<onAr.length;i++) ChangeShowEach(onAr[i], "block");}
+
+//function Show_a1(){onAr = ["a100","a1"];ChangeShow(onAr);}
+function Show_a1(){onAr = ["a100","a1"];ChangeShow(onAr);}
+function Show_a2(){onAr = ["a100","a2"];ChangeShow(onAr);}
+function Show_b1(){onAr = ["b100","b1"];ChangeShow(onAr);}
+function Show_b2(){onAr = ["b100","b2"];ChangeShow(onAr);}
+function Show_All_a(){onAr = ["a100","a1","a2"];ChangeShow(onAr);}
+function Show_All_b(){onAr = ["b100","b1","b2"];ChangeShow(onAr);}
+
+-->
+</script>
+
+
+</head>
+<body>
+<table align="center">
+<tr><td colspan="2"><h2 align="center">SupaDupa1802: Repository and File Management</h2></td></tr>
+<tr><td class="cContent">
+Click on buttons to show contents<br /><br />
+<span class="cButton" onclick="DoShow()">Show All</span>
+<span class="cButton" onclick="DoHide()">Hide All</span><br /><br />
+<span  class="cButton" onclick="Show_a1()">Creating, Navigating, and Deleting Repositories</span><br /> 
+<span  class="cButton" onclick="Show_a2()">Assigning Repository Type</span><br /><br /> 
+<span  class="cButton" onclick="Show_b1()">Moving Files</span><br /> 
+<span  class="cButton" onclick="Show_b2()">Edit, Create, and Delete Files</span><br /> 
+<!--
+<span  class="cButton" onclick="Show_All_a()">a group</span> 
+<span  class="cButton" onclick="Show_All_b()">b group</span> 
+-->
+</td>
+</td><td class="cContent" ><img src="http://SupaDupa1802.github.io/SupaDupa1802Logo.png" width="200px"></td>
+<!--</td><td><img src="http://SupaDupa999.github.io/SupaDupa999Logo.png" width="200px"></td>-->
+</tr></table>
+
+
+
+<div align="center"><table><tr><td align="left" class="cContent">
+
+<span  class="cLabel" title="click me" onclick="expandDiv(this,'a100')">Repositories</span>
+<div   class="cContent" id="a100" style="display:block">
+ 
+  <!-- <span  class="cButton" onclick="Show_a1()">Show a1</span>   button showing defined panels Moved to menu bar-->
+  <span  class="cLabel" title="click me" onclick="expandDiv(this,'a1')">Creating, Navigating, and Deleting Repositories</span>
+  <div   class="cContent" id="a1" style="display:none">
+    <h3 align="center">Create a New Repository</h3> 
+    <b>At the main page after login</b>
+    <ol class="fM">
+    <li>Click <b>Start a repository</b>
+    <li>Enter name of the new repository in the textbox
+    <li>Choose <b>public</b> or <b>private</b> 
+    <li>Click <b>Create repository</b>
+    <li>If necessary, click <b>Settings</b> to fine tune repository accessibility
+    </ol>
+ 
+    <h3 align="center">Naviagate to a Repository</h3> 
+    <b>From the main page after log in</b>
+    <ol class="fM">
+    <li>The repositories are boxes with names in them
+    <li>Click on the name of repository
+    </ol>
+    <b>At some repository to go to another</b>
+    <ol class="fM">
+    <li>On top of the page is the current repository name
+    <li>Click on the name of the root repository
+    <li>At the root repository click name of new repository
+    </ol>
+
+    <h3 align="center">Delete a Repository</h3> 
+    <b>At the repository to be deleted</b>
+    <ol class="fM">
+    <li>Click <b>Setting</b> 
+    <li>At Setting, scrolled down to the bottom <b>Danger Zone</b>
+    <li>Click <b>Delete this repository</b>
+    <li>Follow instructions, confirm intention to delete, and provide the password
+    </ol>
+    <span class="fR"><b>Note: </b>A repository once deleted cannot be recovered</span> 
+  </div><br />
+
+  <!-- span  class="cButton" onclick="Show_a2()">Show a2</span>    button showing defined panels Moved to menu bar-->
+  <span  <span  class="cLabel" title="click me" onclick="expandDiv(this,'a2')">Assigning Repository Type</span>
+  <div   class="cContent" id="a2" style="display:none">
+    Accessibility can be defined when the repository is created
+    <br />It can be changed anytime after creation
+    <br />There are 3 level of accessibiltiy
+
+    <h3 align="center">The Private Repository</h3> 
+    A private repository is visible and allows access only after login
+    <p><b>To create a private repository</b> 
+    <ol class="fM">Choose <b>private</b> when the repository is created</ol>
+    <p><b>To Change an existing repository from public to private</b> 
+    <ol class="fM">
+    <li>At the repository page, click <b>Setting</b>
+    <li>At Setting, scroll to <b>Danger zone</b> at bottom of page
+    <li>Click <b>Visibility</b> and change it to private
+    <li>Answer validating questions and confirm change
+    </ol>
+
+    <h3 align="center">The Public Repository</h3> 
+    A public repository is visible to all those coming to the account, even without logging in
+    <br />It requires logging in to edit contents in public repositories
+    <p><b>To create a public repository</b>
+    <ol class="fM">Choose <b>public</b> when the repository is created</ol>
+    <b>To Change an existing repository from private to public</b>
+    <ol class="fM"> 
+    <li>At the repository page, click <b>Setting</b>
+    <li>At Setting, scroll to <b>Danger zone</b> at bottom of page
+    <li>Click <b>Visibility</b> and change it to public
+    <li>Answer validating questions and confirm change
+    </ol>
+
+    <h3 align="center">The Server Repository</h3> 
+    The server repository is similar tothe main io repository
+    <ul>
+    <li>Files in server repositry can be accessed anywhere on the www using the https protocol
+    <li>After arranging with specific guests, the repository is able to receive files posted to it
+    </ul>
+    <b>To create a https accessible repository</b>
+    <ol class="fM">
+    <li>Use a public repository already created
+    <li>Load or create at least 1 file in the repository
+    <li>At the repository page, click on the <b>Setting</b> button
+    <li>At <b>Settings</b>, scroll to and click <b>Pages</b> in the panel on the left of page
+    <li>Under <b>Branch</b>, click on "None" box and change it to <b>Main</b>
+    <li>Click <b>Save</b>
+    </ol>
+    <span class="fR"><br /><b>Note: </b>As this will be a very public repository
+    great care should be exercise, 
+    <br />and no sensitive or vulnerable information should be place there</span>
+
+    <h3 align="center">The accountname.io Repository (io)</h3> 
+    The io is unique
+    <ul>
+    <li>There is only 1 io repository allowable in an account
+    <li>It is used as the main server from the account to the www
+    <li>From outside of the account, all other repositoryis accessed
+      <br /> as if they are subfolders ofthe io repository
+    <li>Files in io repositories can be accessed using the https protocol
+    </ul>
+    <b>Creating the io repository</b>
+    <ol class="fM">
+    <li>At the main Page, immediately after the account is created
+    <li>Create a public repository, but name it <b>accountname.github.io</b>
+    </ol>
+    <span class="fb">The io in SpupaDupa1802 is created as a public repository name <b>SupaDupa1802.github.io</b></span>
+  </div><!--<br />-->
+
+</div><br />
+
+
+
+
+<span  class="cLabel" title="click me" onclick="expandDiv(this,'b100')">Files</span>
+<div   class="cContent" id="b100" style="display:block">
+
+  <!-- <span  class="cButton" onclick="Show_b1()">Show b1</span>   button showing defined panels Moved to menu bar-->
+  <span  class="cLabel" title="click me" onclick="expandDiv(this,'b1')">Moving Files</span>
+  <div   class="cContent" id="b1" style="display:none">
+  <h3 align="center">Uploading a file from Computer to SupaDupa1802</h3> 
+  <b>At the repository</b>
+  <ol class="fM">
+  <li>Click on the <b>+ button</b>, then click on <b>Upload a file</b>
+  <li>Search file on the <b>File Search panel</b> that appears
+  <li>Mark the file then click <b>Open</b>
+  <li>When file loaded, click <b>Commit Change</b>
+  </ol>
+
+  <h3 align="center">Downloading a file from Supadupa1802 to Computer</h3> 
+  <b>At the repository</b>
+  <ol class="fM">
+  <li>Click on the name of the file to download
+  <li>Click on the <b>raw</b> button <span class="fB">(button with 3 dots near top right of page)</span>
+  <li>Click <b>Download File</b>
+  </ol>
+  <span class="fB">Depending on browser setting, the file will be downloaded 
+      <br />either to the <b>Download</b> folder of your computer
+      <br />or a download search panel will appear, <br />allow you to direct which folder to receive the file</span>
+
+  <h3 align="center">Replicating (copy) or moving a File</h3>
+  <ol class="fM">
+  <li>Download the file from the source repository to a temporary folder
+    <br />(usually the <b>Download</b> folder) on your computer
+  <li>If the file is to be copied to a different repository
+      <ul>
+      <li>Upload the file from the temporary folder to the destination repository
+      </ul> 
+  <li>If the file is to be replicated in the same reository
+      <ul>
+      <li>Rename the original file
+      <li>Upload the file from the temporary folder backto the repository
+      </ul> 
+  <li>If the file is to be relocated to a different repository
+      <ul>
+      <li>Upload the file from the temporary folder backto the repository
+      <li>Delete the original file
+      </ul> 
+  </ol>
+  </div><br />
+
+  <!-- span  class="cButton" onclick="Show_b2()">Show a2</span>   button showing defined panels Moved to menu bar-->
+  <span  class="cLabel" title="click me" onclick="expandDiv(this,'b2')">Edit, Create, and Delete Files</span>
+  <div   class="cContent" id="b2" style="display:none">
+
+  <h3 align="center">To Edit a File</h3>
+  <b>At the repository holding the file</b>
+  <ol class="fM">
+  <li>Click on the file name to show file
+  <li>Click on the icon with the pencil (above and to the right of file listing)
+  <li>In the editing panel, change the file as required
+  <li>In the filename box, change the file name as required
+  <li>When editing finished, click the <b>Commit Changes</b> button
+  </ol> 
+
+  <h3 align="center">To Create a New File</h3>
+  A new file can be initiated by
+  <ul>
+  <li>Click on the <b>+ button</b>, then click on <b>Create a New File</b> or
+   <br />Upload a template file from the computer
+  </ul>
+  The file can then be edited by a combination of
+  <ul>
+  <li>direct typing in and changing the computer codes
+  <li>Copying code snippets from available source and paste into the edit
+  </ul>
+  The file can be renamed by editing the file name box
+
+  <h3 align="center">To Delete a File</h3>
+  <b>At the repository</b>
+  <ol class="fM">
+  <li>Click on the file name
+  <li>Click on the account icon <span class="fB">Top right corner of page</span>
+  <li>Scroll to bottom of the drop down list
+  <li>Click <b>Delete File</b>
+  <li>Click <b>Commit Changes</b> (twice in different places on page)
+  </ol> 
+
+  <h3 align="center">To Clean a File's edit history</h3>
+  Github keeps a history of changes to a file since its creation.  
+  <br />This makes the file size large and contents confusing
+  <p>When a file is finalized
+  <br />Its a good idea to remove the editing history
+  <p>To do so
+  <ol class="fM">
+  <li>Download the file to the temporary folder in the computer
+  <span class="fB"><br />Only the file code is downloaded, not the history</span>
+  <li>Delete the file in the repository
+  <span class="fB"><br />The history will also be deleted
+  <li>Upload the file from temporary folder to the repository
+  <span class="fB"><br />The file is back, but history gone
+  </ol> 
+  </div><br />
+
+</div><br />
+
+</td></tr></table></div>
+</body>
+</html>
+
+
+
+
