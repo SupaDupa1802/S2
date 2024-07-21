@@ -19,7 +19,8 @@ table.st{font-size:small;}   table.stb{font-size:small;border-collapse: collapse
 table.stb td,table.stb th,table.nb td,table.nb th { border: 2px solid black; padding: 2px; }    /* table elements with small fonts + border  */
 
 /*   This Page */
-.cContent{background-color:#E0E0E0; color:#000000; border:1px solid black; margin-left:20px; padding:5px; font-size:20px;}
+.cContent{background-color:#E0E0E0; color:#000000; margin-left:20px; padding:5px; font-size:20px;}
 .cLabel{color:#E0E0E0; background-color:#611800;  font-size:20px;}
-.cButton{color:#f0f0f0;  background-color:#611800; font-size:90%; box-shadow: 1px 1px red;}  /* replacing buttons  */
+.cButton{color:#f0f0f0;  background-color:#611800; font-size:100%;  box-shadow: 3px 2px aqua;}   /* replacing buttons  */
+
 </style>
