@@ -10,7 +10,7 @@ body{@charset "utf-8";   background-color:#99BFA4;  font-size:110%;  color:black
 .fG{color:MediumSeaGreen;}  .fGB{color:#MediumSeaGreen; font-weight:bold;}        /* font color green (dark), 100% and bold  */
 
 /* Tables */
-/*table.nb {  border-collapse: collapse;   margin:5px;  } */                                        /* table with 100% fonts and border  */
+table.nb {  border-collapse: collapse;   margin:5px;  }                                         /* table with 100% fonts and border  */
 /*table.st{font-size:small;}   table.stb{font-size:small;border-collapse: collapse; margin:5px;}*/  /* table with small fonts +/- border  */
 /*table.stb td,table.stb th,table.nb td,table.nb th { border: 2px solid black; padding: 2px; } */   /* table elements with small fonts + border  */
 
