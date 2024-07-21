@@ -1,4 +1,3 @@
- <style>
 
 body{@charset "utf-8";   background-color:#99BFA4;  font-size:110%;  color:black;}
 
@@ -23,4 +22,3 @@ table.stb td,table.stb th,table.nb td,table.nb th { border: 2px solid black; pad
 .cLabel{color:#E0E0E0; background-color:#611800;  font-size:20px;}
 .cButton{color:#f0f0f0;  background-color:#611800; font-size:100%;  box-shadow: 3px 2px aqua;}   /* replacing buttons  */
 
-</style>
