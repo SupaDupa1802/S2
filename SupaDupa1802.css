@@ -12,8 +12,7 @@ body{@charset "utf-8";   background-color:#99BFA4;  font-size:110%;  color:black
 /* Tables */
 table.nb {  border-collapse: collapse;   margin:5px;  }                                         /* table with 100% fonts and border  */
 table.st{font-size:small;}   table.stb{font-size:small;border-collapse: collapse; margin:5px;}  /* table with small fonts +/- border  */
-/*table.stb td,table.stb th,table.nb td,table.nb th { border: 2px solid black; padding: 2px; } */   /* table elements with small fonts + border  */
-
+table.stb td,table.stb th,table.nb td,table.nb th { border: 2px solid black; padding: 2px; }   /* table elements with small fonts + border  */
 /*   This Page */
 .cContent{background-color:#E0E0E0; color:#000000;  padding:5px; border:1px solid black; font-size:100%;} 
 .cLabel{color:#E0E0E0; background-color:#611800;  font-size:100%;}
