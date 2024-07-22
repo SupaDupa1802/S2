@@ -1,0 +1,376 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EditingTools</title>
+
+<link rel="stylesheet" href="https://SupaDupa1802.github.io/S2/SupaDupa1802.css">
+<script type="text/javascript" src="https://SupaDupa1802.github.io/S2/Collapsible.js"></script>  
+
+<script>
+ <!--
+function Show_a1(){onAr = ["a1"];ChangeShow(onAr);}
+function Show_a2(){onAr = ["a2"];ChangeShow(onAr);}
+function Show_a3(){onAr = ["a3"];ChangeShow(onAr);}
+function Show_b2(){onAr = ["b100","b2"];ChangeShow(onAr);}
+function Show_All_a(){onAr = ["a100","a1","a2"];ChangeShow(onAr);}
+function Show_All_b(){onAr = ["b100","b1","b2"];ChangeShow(onAr);}
+-->
+</script>
+
+</head>
+<body>
+<h2 align="center">Editing Tools for SupaDupa1802</h2>
+<div align="center"><table><tr><td align="left" class="cContent">
+<img src="http://SupaDupa1802.github.io/SupaDupa1802Logo.png" style="width:20%; float:right;">
+
+<p><span class="cButton" onclick="DoShow()">Show All</span>
+<span class="cButton" onclick="DoHide()">Hide All</span><br />
+<span class="cButton" onclick="Show_a1()">Introduction</span>
+<span class="cButton" onclick="Show_a2()">Make Tables</span>
+<span  class="cButton" onclick="Show_a3()">Encryption</span>
+
+
+
+  <div class="cContent" id="a1" style="display:block">
+  <h3 align="center">Introduction</h3>
+  This Page presents a number of tools for procedures that are
+  <br />tedious and repetetive during editing a html page. Included are
+  <ul>
+  <li><span class="cButton" onclick="Show_a2()">Make Tables:</span> Making a variety of tables from a matrix
+  <li><span  class="cButton" onclick="Show_a3()">Encryption:</span> RC4 Encryption
+
+  </ul> 
+  </div><br />
+
+
+
+
+
+
+  
+  <script>
+<!--
+// Javascript for MakeTables begins
+var mx;
+function makematrix()
+{
+  var arRows=document.theTable.S1.value.trim().split('\n');
+  mx = Array(arRows.length);
+  for(i=0;i<arRows.length;i++)
+  {
+    var ref = /\f/;
+    arRows[i] = arRows[i].replace(ref,'');
+    ref = /\r/;
+    arRows[i] = arRows[i].replace(ref,'');
+    ref = /\t/g;
+    arRows[i] = arRows[i].replace(ref,' ');
+    ref = /    /g;
+    arRows[i] = arRows[i].replace(ref,' ');
+    ref = /    /g;
+    arRows[i] = arRows[i].replace(ref,' ');
+    ref = /   /g;
+    arRows[i] = arRows[i].replace(ref,' ');
+    ref = /  /g;
+    arRows[i] = arRows[i].replace(ref,' ');
+    mx[i] = arRows[i].split(' ');
+  }
+}
+
+function Cell(m,s)
+{
+   x = document.theTable.Att.value;
+	 if(x.length>0) x = ' ' + x; 
+   return '<' + m + x + '>' +
+         document.theTable.Bef.value + s + document.theTable.Aft.value +
+         '</' + m + '>';
+}
+
+function TH(s)
+{
+  return Cell("th",s);
+}
+
+function TD(s)
+{
+  return Cell("td",s);
+}
+
+function THTable()
+{
+  makematrix();
+  var rs = "";
+  for(i=0;i<mx.length;i++)
+  {
+    rs += "<tr>";
+    for(j=0;j<mx[i].length;j++) rs += TH(mx[i][j]);
+    rs += "</tr>" + '\n';
+  }
+  document.theTable.S2.value = rs;
+}
+
+function TDTable()
+{
+  makematrix();
+  var rs = "";
+  for(i=0;i<mx.length;i++)
+  {
+    rs += "<tr>";
+    for(j=0;j<mx[i].length;j++) rs += TD(mx[i][j]);
+    rs += "</tr>" + '\n';
+  }
+  document.theTable.S2.value = rs;
+}
+
+function HeadTable()
+{
+  makematrix();
+  var rs = "";
+  rs += "<tr>";
+  for(j=0;j<mx[0].length;j++) rs += TH(mx[0][j]);
+  rs += "</tr>" + '\n';
+  for(i=1;i<mx.length;i++)
+  {
+    rs += "<tr>";
+    for(j=0;j<mx[i].length;j++) rs += TD(mx[i][j]);
+    rs += "</tr>" + '\n';
+  }
+  document.theTable.S2.value = rs;
+}
+
+function MixTable()
+{
+  makematrix();
+  var rs = "";
+  rs += "<tr>";
+  for(j=0;j<mx[0].length;j++) rs += TH(mx[0][j]);
+  rs += "</tr>" + '\n';
+  for(i=1;i<mx.length;i++)
+  {
+    rs += "<tr>" + TH(mx[i][0]);
+    for(j=1;j<mx[i].length;j++) rs += TD(mx[i][j]);
+    rs += "</tr>" + '\n';
+  }
+  document.theTable.S2.value = rs;
+}
+
+function TabTable()
+{
+  makematrix();
+  var rs = "";
+  for(i=0;i<mx.length;i++)
+  {
+     rs += mx[i][0];
+     for(j=1;j<mx[i].length;j++) rs += "\t" + mx[i][j];
+     rs += "\n";
+  }
+  document.theTable.S2.value = rs;
+}
+
+function ClearInput()
+{
+   document.theTable.S1.value = "";
+}
+
+function ClearAll()
+{
+   document.theTable.Att.value = "";
+   document.theTable.Bef.value = "";
+   document.theTable.Aft.value = "";
+}
+// Javascript for MakeTables ends
+-->
+</script>  
+
+<div   class="cContent" id="a2" style="display:none">
+  <!--<h3 align="center">Make Tables</h3>-->
+  <h3 align="center">Making tables from Text</h3>
+  <form name="theTable" method="POST" action="--WEBBOT-SELF--"> 
+  <b>Matrix Input</b>
+  <br /><textarea rows="10" name="S1" cols="120">a	b	c
+d	e
+f	g	h	i</textarea>
+  <table><tr><td valign="top">
+  <input type="text" name="Att" size="50" value="class=&#34;Hello&#34;"> Attribute<br /><br />
+  <input type="text" name="Bef" size="50" value="&lt;b&gt;"> Before<br /><br />
+  <input type="text" name="Aft" size="50" value="&lt;/b&gt;"> After
+  </td><td valign="top">
+  <input type="button" value="TH Table" onClick="THTable()"><br />
+  <input type="button" value="TD Table" onClick="TDTable()"><br />
+  <input type="button" value="Head Table" onClick="HeadTable()"><br />
+  <input type="button" value="Mix Table" onClick="MixTable()"><br />
+  <input type="button" value="Tab Table" onClick="TabTable()">
+  </td><td valign="top">
+  <input type="button" value="Clear Input Box" onClick="ClearInput()"><br />
+  <input type="button" value="Clear Add Ons" onClick="ClearAll()"><br />
+  </td></tr></table>
+  <b>Table Output</b>
+  <br /><textarea rows="10" name="S2" cols="120"></textarea>
+  </form>
+  </div><br />
+
+
+
+
+<script type="text/javascript" src="https://SupaDupa1802.github.io/S2/RC42023.js"></script>
+<script>
+<!--
+// calling from this program, related to user interface widgets
+function DoNewRC4Encrypt()
+{
+//   var $newRC4_=new $ClassRC42023_();
+   var pw1 = document.getElementById("pw1").value;         // read in password 1
+   var pw2 = document.getElementById("pw2").value;         // read in password 2
+   var plainText = document.getElementById("pt").value;    // read in plain text
+   document.getElementById("ct").value = DoRC42023Encrypt(plainText, pw1, pw2); // output cipher text
+}
+
+function DoNewRC4Decipher()
+{
+   var pw1 = document.getElementById("pw1").value;         // read in password 1
+   var pw2 = document.getElementById("pw2").value;         // read in password 1
+   var cipherText = document.getElementById("ct").value;   // read in cipher text in hex
+   document.getElementById("pt").value = DoRC42023Decipher(cipherText,pw1,pw2);  // output plain text
+}
+
+function CipherTextToClipboard()
+{
+   var txt = document.getElementById("ct").value;
+   navigator.clipboard.writeText(txt);
+}
+-->
+</script>
+
+  
+  <div   class="cContent" id="a3" style="display:block">
+<h3 align="center">Part 1: RC4 (Modified 2023)</h3>
+<p><b>First Password: </b>One or more Keyboard characters<br />
+<textarea rows="1" cols="105" id="pw1">MyPassword1</textarea><br />
+<p><b>Second Password: </b>One or more Keyboard characters<br />
+<textarea rows="1" cols="105" id="pw2">MyPassword2</textarea><br />
+
+<p><b>Plain Text: </b>Text consisting of keyboard characters to be encrypted<br />
+<textarea rows="3" cols="105" id="pt">The quick brown fox jumps over the lazy dog</textarea><br />
+<input type="button" value="Encrypt Plain Text to Cipher Text" onClick="DoNewRC4Encrypt();">&nbsp;&nbsp;&nbsp;&nbsp;
+
+<p><b>Cipher Text: </b>Characters 0-9 and a-f or A-F representing Hex values of encrypted cipher text to be deciphered<br />
+<textarea rows="3" cols="105" id="ct"></textarea><br />
+<input type="button" value="Decipher Cipher Text to Plain Text" onClick="DoNewRC4Decipher();">&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button" value="Copy CipherText to Clipboard" onClick="CipherTextToClipboard();">
+
+<script>
+<!--
+//                 Codes to create encripted html
+
+// clear text area for html plain code id=body
+function ClearHtmlText(){ document.getElementById("plhtml").value = ""; }
+
+// clear text area for encrypted html id=enchtml
+function ClearEncryptText(){ document.getElementById("enchtml").value = ""; }
+
+// copy encrypted html code (content of id=enchtml) to clipboard
+function EncryptedHtmlToClipboard()
+{
+   var txt = document.getElementById("enchtml").value;
+   navigator.clipboard.writeText(txt);
+}
+/*
+// convert html code (from id=body) to encrupted html code
+function MakeCipherText(body)
+{
+   var pw1 = document.getElementById("pw1").value;         // read in pw 1
+   var pw2 = document.getElementById("pw2").value;         // read in pw 2
+//   var plainText = document.getElementById("plhtml").value;  // read in plain html text from id=body
+   return DoRC42023Encrypt(body, pw1, pw2);           // returns the html as cipher text
+}
+*/
+function DivideStr(originalStr, markStr)  // split originalStr by markStr into 3 bits
+{
+    var idxStart = originalStr.indexOf(markStr);
+    var idxEnd = idxStart + markStr.length;
+    var subStr1 = originalStr.substring(0,idxStart);
+    var subStr2 = originalStr.substring(idxStart,idxEnd);
+    var subStr3 = originalStr.substring(idxEnd,originalStr.length);
+    return [subStr1,subStr2,subStr3];
+}
+/*
+function GetHeadAndBody(htmlStr)
+{//alert(htmlStr);
+   head = DivideStr(DivideStr(htmlStr, "<head>")[2], "</head>")[0]; //alert(head);
+   body = DivideStr(DivideStr(htmlStr, "<body>")[2], "</body")[0];  //alert(body); 
+   return [head,body];
+}
+*/
+
+function GetHeadAndBody(htmlStr)
+{//alert(htmlStr);
+   head = DivideStr(htmlStr, "</head>")[0]; //before </head>
+   body = DivideStr(DivideStr(htmlStr, "<body>")[2], "</body")[0];  //between <body> and </body> 
+   return [head,body];
+}
+
+//  Engine to produce the encrypted html as a text string
+function MakeEncryptedHtml()
+{
+   var ar = GetHeadAndBody(document.getElementById("plhtml").value);   // read in the plain html textand extract head and body
+   var headStr = ar[0];                  // head section
+   var bodyStr = ar[1];                  // body section
+
+   var pw1 = document.getElementById("pw1").value;         // read in pw 1
+   var pw2 = document.getElementById("pw2").value;         // read in pw 2
+   var cipherText = DoRC42023Encrypt(bodyStr, pw1, pw2);   // encrypted body
+
+   // header begins
+   var htmlStr = headStr + "\n\n";                         // All of the original up to </head>
+   htmlStr += `<script type="text/javascript" src="https://SupaDupa1802.github.io/S2/RC42023.js"></script>\n`;
+   htmlStr += "<!--    Above is the copy of the original header section of html\n\n" +
+              "       The following section is the encrypted engine, and should not be altered    -->\n\n";
+   // position cipher text
+   htmlStr += "<script><!--\n// cipher text for body\nct = \"" + cipherText + "\";\n\n";
+   htmlStr += "// Produce the deciphered html \n" +
+              "function DecipherHtml(){\nvar pw1 = document.getElementById(\"pw1\").value;\nvar pw2 = document.getElementById(\"pw2\").value;\n\n" +
+               "document.getElementById(\"content\").innerHTML = DoRC42023Decipher(ct,pw1,pw2);\n" +
+               "document.getElementById(\"start\").style.display = \"none\";\n}\n\n";
+   htmlStr += "--> " + "<" + "/" + "script>\n\n" +
+              "<!-- Non-editable section ends -->\n";;
+   htmlStr += "</head>\n<body>\n<div id=\"start\">\n";
+   htmlStr += "<!-- Please note: The two passwords are included in pw1 and pw2 textbox. They should be remembered then replaced with value=\"\" \n" +
+              "     Also: tis encrypted html can only be decrypted if it had access to the RC4 codes on the SupaDupa1802/S2 server via the www  -->\n";
+   htmlStr += "<input type=\"text\" id=\"pw1\" style=\"width:500px;\" value=\"" + pw1  + "\"><br />\n" +
+              "<input type=\"text\" id=\"pw2\" style=\"width:500px;\" value=\"" + pw2  + "\"><br />\n" +
+              "<input type=\"button\" value=\"Submit\" onClick=\"DecipherHtml();\"><br />\n" +
+              "<!-- Optional Comments -->\n</div>\n<div id=\"content\"></div>\n" +
+              "</body>\n</html>";
+   document.getElementById("enchtml").value = htmlStr;
+}
+
+
+
+
+-->
+</script>
+
+<h3 align="center">Part 2: Encrypt HTML (Using First and Second Passwords Above)</h3>
+<b>HTML Text </b>(Backend text from html)<br />
+<textarea rows="5" cols="105" id="plhtml"></textarea><br />
+<input type="button" value="Clear HTML Text" onClick="ClearHtmlText();">
+<input type="button" value="Make Encrypted HTML" onClick="MakeEncryptedHtml();">
+
+<p><b>Encrypted Html: </b> Result html string to be copied and pasted into html editor<br />
+<textarea rows="5" cols="105" id="enchtml"></textarea><br />
+<input type="button" value="Clear Encrypted HTML Text" onClick="ClearEncryptText();">
+<input type="button" value="Copy Encrypted HTML to Clipboard" onClick="EncryptedHtmlToClipboard();">
+
+  </div><br />
+
+  <!-- span  class="cButton" onclick="Show_x()">Show a2</span>    button showing defined panels Moved to menu bar-->
+<!--  <span  class="cLabel" title="click me" onclick="expandDiv(this,'x2')">x2</span>
+  <div   class="cContent" id="x2" style="display:none">
+  This is x2
+  </div><!--<br />-->
+
+
+</td></tr></table></div>
+
+</body>
+</html>
