@@ -16,4 +16,4 @@ table.stb td,table.stb th,table.nb td,table.nb th { border: 2px solid black; pad
 /*   This Page */
 .cContent{background-color:#E0E0E0; color:#000000;  padding:5px; border:1px solid black; font-size:100%;} 
 .cLabel{color:#E0E0E0; background-color:#611800;  font-size:100%;}
-.cButton{color:#f0f0f0;  background-color:#611800; font-size:100%;  box-shadow: 3px 2px #cc3fc8;}   /* replacing buttons  */
+.cButton{color:#f0f0f0;  background-color:#611800; font-size:100%;  box-shadow: 3px 2px yellow;}   /* replacing buttons  */
