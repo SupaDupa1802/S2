@@ -1,0 +1,427 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ImageProcessing</title>
+
+<link rel="stylesheet" href="https://SupaDupa1802.github.io/S2/SupaDupa1802.css">
+<script type="text/javascript" src="https://SupaDupa1802.github.io/S2/Collapsible.js"></script>  
+<script type="text/javascript" src="https://SupaDupa1802.github.io/S2/IOBasic.js"></script>  
+
+
+<script>
+<!--
+/* ctx isthe universal context for the canvas.  
+   This is set up when the page loads, and used throughout the lifespan of the page
+*/
+canvas = "";
+ctx = "";
+canvasHeight = 0;
+canvasWidth = 0;
+-->
+</script>
+
+<script>
+<!--
+/* The following script is copied from
+    <a href="https://jsfiddle.net/ourcodeworld/hzvfq82b/">https://jsfiddle.net/ourcodeworld/hzvfq82b/</a>
+    Other than commenting out initializing canvas context (so that the universal context can be used) the codes are left unchanged
+       
+                Copied codes begins
+
+ * This handler retrieves the images from the clipboard as a blob and returns it in a callback.
+ * 
+ * @see http://ourcodeworld.com/articles/read/491/how-to-retrieve-images-from-the-clipboard-with-javascript-in-the-browser
+ * @param pasteEvent 
+ * @param callback 
+*/
+function retrieveImageFromClipboardAsBlob(pasteEvent, callback){
+	if(pasteEvent.clipboardData == false){
+        if(typeof(callback) == "function"){
+            callback(undefined);
+        }
+    };
+
+    var items = pasteEvent.clipboardData.items;
+
+    if(items == undefined){
+        if(typeof(callback) == "function"){
+            callback(undefined);
+        }
+    };
+
+    for (var i = 0; i < items.length; i++) {
+        // Skip content if not image
+        if (items[i].type.indexOf("image") == -1) continue;
+        // Retrieve image on clipboard as blob
+        var blob = items[i].getAsFile();
+
+        if(typeof(callback) == "function"){
+            callback(blob);
+        }
+    }
+}
+
+window.addEventListener("paste", function(e){
+
+    // Handle the event
+    retrieveImageFromClipboardAsBlob(e, function(imageBlob){
+        // If there's an image, display it in the canvas
+        if(imageBlob){
+
+
+/*
+    These 2 lines are commentedout so that the univesalcontext can be used
+
+            var canvas = document.getElementById("mycanvas");
+            var ctx = canvas.getContext('2d');
+*/            
+            // Create an image to render the blob on the canvas
+            var img = new Image();
+
+            // Once the image loads, render the img on the canvas
+            img.onload = function(){
+                // Update dimensions of the canvas with the dimensions of the image
+/*
+    These 2 lines are commentedout so that the univesalcontext can be used
+
+                canvas.width = this.width;
+                canvas.height = this.height;
+
+*/                // Draw the image
+                ctx.drawImage(img, 0, 0);
+            };
+
+            // Crossbrowser support for URL
+            var URLObj = window.URL || window.webkitURL;
+
+            // Creates a DOMString containing a URL representing the object given in the parameter
+            // namely the original Blob
+            img.src = URLObj.createObjectURL(imageBlob);
+        }
+    });
+}, false);
+
+//   Copied codes Ends
+-->
+</script>
+
+<script>
+<!--
+//  The following are codes constructed by myself, to edit images
+
+/* 
+SetUpCanvasOnLoad runs when the page is loaded
+It sets the canvas to 700x700 pixels and creates the univeral sontext
+Tese persists throughout the life of the page
+*/
+function SetUpCanvas(hpix,vpix)
+{
+  canvas = document.getElementById("mycanvas");
+  canvas.width = hpix;
+  canvas.height = vpix;
+  ctx = canvas.getContext('2d');
+  canvasHeight = vpix;
+  canvasWidth = hpix;
+}
+
+/*
+UrlToImage inserts a bitmap acqured by the url (theUrl) to the image tag (imgId)
+Note: this is for display and mix only.  Bitnmap so loaded cannot beprocessed by Javascript
+      by browser defined security issues
+*/
+function UrlToImg(imgId,theUrl)
+{
+   var image = document.getElementById(imgId);
+   var downloadingImage = new Image();
+   downloadingImage.onload = function(){
+    image.src = this.src;   
+    };
+   downloadingImage.src = theUrl;
+}
+
+/*
+ImgToCanvas copies an existing image on the web page (imgId) to the canvas (canvasId)
+Width and height of canvas is pre-set and not changed by the image
+Note: this is for display and mix only.  Bitnmap so loaded cannot beprocessed by Javascript
+      by browser defined security issues
+*/
+function ImgToCanvas(imgId,canvasId)
+{
+   var image = document.getElementById(imgId);
+    canvas = document.getElementById(canvasId);
+    ctx = canvas.getContext('2d');
+    ctx.drawImage(image,0,0); 
+}
+
+/*
+UrlToCanvas inserts a bitmap acqured by the url (theUrl) to the canvas (canvasId)
+Width and height of canvas is pre-set and not changed by the image
+Note: this is for display and mix only.  Bitnmap so loaded cannot beprocessed by Javascript
+      by browser defined security issues
+*/
+function UrlToCanvas(theUrl)
+{
+   var image = new Image();
+   image.onload = function()
+   {
+      canvas = document.getElementById("mycanvas");
+      ctx = canvas.getContext('2d');
+      ctx.drawImage(image,0,0);   
+   };
+   image.src = theUrl;
+}
+
+/*
+DoPaintPixels takes the macro array, translating the elements to parameters
+then paints the block according to the color
+*/
+function DoPaintPixels(ar)
+{
+   fleft = ar[2]; 
+   ftop = ar[3];  
+   tright = ar[4]; 
+   tbot = ar[5]; 
+   r = ar[6];
+   g = ar[7];
+   b = ar[8];
+   colStr = "rgba("+r+","+g+","+b+",255)";
+   ctx.fillStyle = colStr;
+   ctx.fillRect(fleft,ftop, tright-fleft+1, tbot-ftop+1);
+}
+
+function DoMonochrome(oldColAr,typ)
+{
+   avCol = (oldColAr[0] + oldColAr[1] + oldColAr[2])/3;
+   switch(typ)
+   {
+      case 2:
+        if(avCol<128){ avCol = 0; } else {avCol = 255}
+        break;
+      case 3:
+        if(avCol<85){avCol = 0;} else if(avCol>170){avCol=255;} else {avCol = 128;} 
+        break;
+      case 5:
+        if(avCol<32){avCol = 0;} else if(avCol<96){avCol = 64;} else if(avCol<160){avCol=128;}
+        else if(avCol<214){avCol=192;} else {avCol = 255;}
+        break;
+   }
+   for(var c=0;c<3;c++)oldColAr[c] = avCol;
+   return oldColAr;
+}
+
+function DoStandardColors(oldColAr,typ)
+{
+   for(var c=0;c<3;c++)
+   {
+      var col = oldColAr[c];
+      switch(typ)
+      {
+         case 2:
+           if(col<128){ col = 0; } else {col = 255}
+           break;
+         case 3:
+           if(col<85){col = 0;} else if(col>170){col=255;} else {col = 128;} 
+           break;
+         case 5:
+           if(col<32){col = 0;} else if(col<96){col = 64;} else if(col<160){col=128;}
+           else if(col<214){col=192;} else {col = 255;}
+           break;
+       }
+       oldColAr[c] = col;
+   }
+   return oldColAr
+}
+
+
+function ProcessPixels(arMacro)
+{
+   canvas = document.getElementById("mycanvas");
+   ctx = canvas.getContext('2d');
+   var imgData = ctx.getImageData(0,0,canvasWidth,canvasHeight);
+   var data = imgData.data;
+   for (var i = 0; i < data.length; i += 4) 
+   {                
+     oldColAr = [];
+     for(var j=0;j<4;j++) oldColAr.push(data[i+j]);
+     if(oldColAr[3]>0)
+     {
+         switch(arMacro[2])
+         {
+           case "Monochrome2": resColAr = DoMonochrome(oldColAr,2); break;
+           case "Monochrome3": resColAr = DoMonochrome(oldColAr,3); break;
+           case "Monochrome5": resColAr = DoMonochrome(oldColAr,5); break;
+           case "StandardColors2":resColAr = DoStandardColors(oldColAr,2); break;
+           case "StandardColors3":resColAr = DoStandardColors(oldColAr,3); break;
+           case "StandardColors5":resColAr = DoStandardColors(oldColAr,5); break;
+           case "ChangeColor":
+                if(arMacro[3] != oldColAr[0] || arMacro[4] != oldColAr[1] || arMacro[5] != oldColAr[2]){ resColAr = oldColAr; } else
+                for(var c=0;c<3;c++) resColAr[c] = arMacro[c+6];
+                break;
+           case "KeepColor":
+                if(arMacro[3] == oldColAr[0] && arMacro[4] == oldColAr[1] && arMacro[5] == oldColAr[2]){ resColAr = oldColAr; } else
+                for(var c=0;c<3;c++) resColAr[c] = arMacro[c+6];
+                break;
+           default: resColAr = oldColAr;  
+         }
+         resColAr[3] = 255;
+         for(var j=0;j<4;j++) data[i+j] = resColAr[j];
+     }
+  }
+  ctx.putImageData(imgData, 0, 0);
+}
+
+/*
+ProcessMacros isthe master function.  It reads the text area, converts the data string to a matrix, then
+line by line it :
+  - ignores any line not begin eith # + space
+  - processes the rest of the lines each as an array of strings
+*/
+function ProcessMacros()
+{
+  mx = StrToMx(document.getElementById("macroArea").value);
+  for(i=0;i<mx.length;i++) if(mx[i].length>0 && mx[i][0]=="#")
+  {
+     switch(mx[i][1])
+     {
+        case "CanvasResize":    // resizes the canvas
+              SetUpCanvas(mx[i][2],mx[i][3]); break;
+        case "ClearCanvas":    // blanks out the canvas
+             ctx.clearRect(0, 0, canvas.width, canvas.height); break;
+        case "LoadCanvas":     // load canvas with image from url
+             UrlToCanvas(mx[i][2]); break;
+        case "PaintPixels": // paint pixel(x y) by colour (r g b a)
+             DoPaintPixels(mx[i]); break;
+        case "ChangePixels": // multiple methods
+             ProcessPixels(mx[i]); break;
+     }
+  }
+}
+-->
+</script>
+</head>
+<body onload="SetUpCanvas(700,700)">
+<h2 align="center">Image Processing</h2>
+<div align="center"><table><tr><td align="left" class="cContent">
+<img src="http://SupaDupa1802.github.io/SupaDupa1802Logo.png" id="logo" style="width:20%; float:right;">
+
+
+<p><span class="cButton" onclick="DoShow()">Show All</span>
+<span class="cButton" onclick="DoHide()">Hide All</span>
+<b>Click on label to show or hide a panel</b></p>
+
+<span  class="cLabel" title="click me" onclick="expandDiv(this,'a1')">Javascript Program</span>
+<div   class="cContent" id="a1" style="display:none">
+<p><b>Canvas containing image to be processed</b>.  Import impage by
+<br />&nbsp;&nbsp; paste image (focus on canvas then ctrl+v), or
+<br />&nbsp;&nbsp; Using macros from the macros text area
+</p>
+<div style="border:1px solid grey;">
+<!--<p><canvas style="border:1px solid grey;" id="mycanvas"></p>-->
+<canvas id="mycanvas">
+</div>
+<input type="button" value="Blank Canvas"  onclick="BlankCanvas()">
+<p>
+<textarea rows="18" id="macroArea" cols="70">
+## ClearCanvas
+## CanvasResize 500 500
+## LoadCanvas tmp.png
+## LoadCanvas https://SupaDupa999.github.io/SupaDupa999Logo.png
+## PaintPixels 0 0 50 50 255 0 0
+## PaintPixels 50 50 100 100 255 0 0
+## ChangePixels Monochrome2
+## ChangePixels Monochrome3
+## ChangePixels Monochrome5
+## ChangePixels StandardColors2
+## ChangePixels StandardColors3
+## ChangePixels StandardColors5
+## ChangePixels ChangeColor 255 0 0 0 255 0
+## ChangePixels KeepColor 255 0 0 0 255 0
+</textarea><br />
+<input type="button" value="Process Canvas by Macros"  onclick="ProcessMacros()">
+
+</p>
+ 
+
+</div><br />
+
+<span  class="cLabel" title="click me" onclick="expandDiv(this,'b0')">Explanations</span>
+<div   class="cContent" id="b0" style="display:block">
+
+  <span  class="cLabel" title="click me" onclick="expandDiv(this,'b1')">Introduction</span>
+  <div   class="cContent" id="b1" style="display:block">
+  This programis intended to be used in conjunction with other image programs available, 
+  <br />bridging some of the gaps not covered. Secificlly, the other image programs to be used are
+  <ul>
+  <li>Powerpoint
+  <li>Paint
+  <li><a href="https://pixlr.com/express/">https://pixlr.com/express/</a> Online photo Editor
+  <li><a href="https://onlinepngtools.com/create-monochrome-png">https://onlinepngtools.com/create-monochrome-png</a> Online Monochrome Converter
+  <li><a href="https://onlinepngtools.com/change-png-color">https://onlinepngtools.com/change-png-color</a> Online Color Change
+  <li><a href="https://app.diagrams.net/">https://app.diagrams.net/</a> Online Flow Chart Creator
+  </ul> 
+  The program begins with a blank canvas of 700x700 pixel.  
+<br />Blanks means color of rgba(0,0,0,0). User may re-define the size of the image, 
+<br />but by doing so a new blank canvas is created, erasing all existing images 
+  </div><br />
+
+  <span  class="cLabel" title="click me" onclick="expandDiv(this,'b2')">Add Images</span>
+  <div   class="cContent" id="b2" style="display:block">
+  The program allows new images to be added to the canvas, in doing so
+  <ul>
+  <li>The size of the canvas is not afftected by the new  image.
+  <li>Excessively large images are truncated tocanvas size
+  <li>Existing image is notremoved,but overlaid by the new image
+  </ul>
+  There are 3 methods of inserting new images to the canvas
+  <ul>
+  <li>By filling in a rectangular area with a specific color
+  <li>By pasting an image from the clipboard by focusing on the canvas and click ctrl+v
+  <li>By importing an image file using an url
+  <li><b>Please note:</b> most browsers will block javascript processing image files.<br />
+  so that attempts to modify the canvas after a file loading will freeze the program,<br />
+  requiring the program to be restarted.  <br />To overcome this, after loading a file to the canvas
+    <ol>
+    <li>Copy the image from the canvas to the clipboard using the prt sc button
+    <li>Re-start the program with a blank canvas
+    <li>Paste the image from the clipboard to the canvas
+    <li>Proceed with processing the image
+    </ol> 
+  </ul>
+  </div><br />
+
+  <span  class="cLabel" title="click me" onclick="expandDiv(this,'b3')">Alter Images</span>
+  <div   class="cContent" id="b3" style="display:block">
+  The procedures changing the image by pixels are intended to fill the gaps not covered by
+  <br />Powerpoint, Paint, and other available programs, with 3 sets of functions
+  <p><b>Note: </b>Pixels are only changed if they are not blanks (rgba(0,0,0,0)).<br />All changes include a value of 255 for alpha 
+  <h3 align="center">Gray scale</h3>
+  All colors are converted into shades of gray, with 3 options
+  <ul>
+  <li>Monochrome2: 2 levels of white (rgba(255,255,255,255)) and black (tgbs(0,0,0,255))
+  <li>Monochrome3: additional gray (rgba(128,128,128,255))
+  <li>Monochrome5: additional lightGray (rgba(192,192,192,255)) and darkgray (rgba(64,64,64,255))
+  </ul>
+  <h3 align="center">Standardization</h3>
+  These are intended to remove gradations and stippling, simplifying complex mixed colors
+  <ul>
+  <li>StandardColors2: Each rgb color is simplified to 2 levels of 0 or 255, resulting in 8 basic mixes of rgb
+  <li>StandardColors3: Each rgb color is simplified to 3 levles of 0, 128, or 255, resulting in 27 mixes of rgb
+  <li>StandardColors5: Each rgb color is simplified to 5 levels of 0, 64, 128, 192, and 255<br />resulting in 125 mixes of rgb
+  </ul>
+  <h3 align="center">Changing colors</h3>
+  These are intended to change one color to another
+  <ul>
+  <li>ChangeColor r1 g1 b1 r2 g2 b2: changes color from 1 to 2 by rbg, but keep all other colors unchanged
+  <li>KeepColor r1 g1 b1 r2 g2 b2: Change all colors to 2 by rgb, but keep color 1 unchanged
+  </ul>
+  </div><br />
+</div><br />
+
+
+
+
+</td></tr></table></div>
+
+</body>
+</html>
